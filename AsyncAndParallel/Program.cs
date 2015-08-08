@@ -1,5 +1,7 @@
 ﻿using AsyncAndParallel.Chapter1;
 using AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchronicznego_wykonania_kodu;
+using AsyncAndParallel.Chapter1.Listing1._3_Wzór_metody_wykonującej_jakąś_czynność_asynchronicznie;
+using AsyncAndParallel.Chapter1.Listing1._4_Przykład_użycia_modyfikatora_async_i_modyfikatora_await;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,25 +14,23 @@ namespace AsyncAndParallel
     {
         public static int Main(string[] args)
         {
-            SynchronusOperation instance = new SynchronusOperation();
-            Console.WriteLine("Synchronus run");
-
-            for (int i = 0; i < 100; i++)
+            AsyncAwaitExample asyncAwaitExample = new AsyncAwaitExample();
+            for (int i = 0; i < 10; i++)
             {
-                instance.makeThreadAction();
-                Console.WriteLine("I'm alive...");
+                asyncAwaitExample.runAsyncTask();
+                Console.WriteLine("Nie umarłem...");
             }
 
-            AsynchronusOperation aInstance = new AsynchronusOperation();
-            Console.WriteLine("Asynchronus run");
+            Console.WriteLine("A teraz zmiana. Szpak dziobie bociana...");
 
-                aInstance.makeThreadAction();
-                Console.WriteLine("I'm alive...");
+            PatternAsynchronus patternAsynchronus = new PatternAsynchronus();
+            for (int i = 0; i < 10; i++)
+            {
+                patternAsynchronus.runAsyncTask();
+                Console.WriteLine("Nie umarłem...");
+            }
 
-                aInstance.makeThreadAction();
-                Console.WriteLine("I'm alive...");
-            Console.ReadKey();
-
+                Console.ReadKey();
             return 0;
         }
     }
