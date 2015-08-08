@@ -9,7 +9,7 @@ namespace AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchroniczn
 {
     public class AsynchronusOperation
     {
-        protected static readonly int totalSleepTime = 10000;
+        protected static readonly int totalSleepTime = 100;
         protected virtual void threadOperations()
         {
             Thread.Sleep(totalSleepTime);
@@ -31,12 +31,6 @@ namespace AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchroniczn
 
             zadanie = new Task<long>(akcja, "zadanie");
             zadanie.Start();
-
-            return totalSleepTime;
-        }
-
-        public void printResult()
-        {
             printMessage("Start action: Początek");
             if (zadanie.Status != TaskStatus.Running &&
                 zadanie.Status != TaskStatus.RanToCompletion)
@@ -46,6 +40,13 @@ namespace AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchroniczn
 
 
             printMessage("Start action: Koniec");
+
+            return totalSleepTime;
+        }
+
+        public void printResult()
+        {
+            
         }
 
         protected bool taskCurrentIdNotNull = Task.CurrentId.HasValue;

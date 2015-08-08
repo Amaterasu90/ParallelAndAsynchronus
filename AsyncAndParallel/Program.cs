@@ -14,40 +14,21 @@ namespace AsyncAndParallel
         {
             SynchronusOperation instance = new SynchronusOperation();
             Console.WriteLine("Synchronus run");
-            instance.makeThreadAction();
 
-            while (true)
+            for (int i = 0; i < 100; i++)
             {
-                if (Console.ReadKey().Key == ConsoleKey.Q)
-                    Console.WriteLine("Jestem żywy...");
-                else
-                {
-                    if (Console.ReadKey().Key == ConsoleKey.R)
-                    {
-                        break;
-                    }
-                }
+                instance.makeThreadAction();
+                Console.WriteLine("I'm alive...");
             }
 
             AsynchronusOperation aInstance = new AsynchronusOperation();
             Console.WriteLine("Asynchronus run");
-            aInstance.makeThreadAction();
 
-            while (true)
-            {
-                if (Console.ReadKey().Key == ConsoleKey.Q)
-                    Console.WriteLine("Jestem żywy...");
-                else
-                {
-                    if (Console.ReadKey().Key == ConsoleKey.R)
-                    {
-                        aInstance.printResult();
-                        break;
-                    }
-                }
-            }
+                aInstance.makeThreadAction();
+                Console.WriteLine("I'm alive...");
 
-
+                aInstance.makeThreadAction();
+                Console.WriteLine("I'm alive...");
             Console.ReadKey();
 
             return 0;

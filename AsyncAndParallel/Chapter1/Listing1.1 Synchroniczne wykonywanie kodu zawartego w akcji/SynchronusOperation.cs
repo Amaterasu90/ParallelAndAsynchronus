@@ -11,7 +11,7 @@ namespace AsyncAndParallel.Chapter1
 {
     public class SynchronusOperation
     {
-        protected static readonly int totalSleepTime = 10000;
+        protected static readonly int totalSleepTime = 100;
         protected virtual void threadOperations()
         {
             Thread.Sleep(totalSleepTime);
