@@ -24,7 +24,7 @@ namespace AsyncAndParallel.Chapter1.Listion1._10_Obliczenia_sekwencyjne
             set { SequenceCalculations.iloscPowtorzen = value; }
         }
 
-        public static void run()
+        public static void Calculations()
         {
             r = new Random();
             double[] tablica = new double[rozmiar];

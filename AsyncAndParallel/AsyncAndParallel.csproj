@@ -60,17 +60,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chapter1\Listing1.1 Synchroniczne wykonywanie kodu zawartego w akcji\Creativity\SynchronusCounter.cs" />
-    <Compile Include="Chapter1\Listing1.1 Synchroniczne wykonywanie kodu zawartego w akcji\SynchronusOperation.cs" />
-    <Compile Include="Chapter1\Listing1.2 Użycie zadania do asynchronicznego wykonania kodu\AsynchronusOperation.cs" />
-    <Compile Include="Chapter1\Listing1.3 Wzór metody wykonującej jakąś czynność asynchronicznie\PatternAsynchronus.cs" />
-    <Compile Include="Chapter1\Listing1.4 Przykład użycia modyfikatora async i modyfikatora await\AsyncAwaitExample.cs" />
-    <Compile Include="Chapter1\Listing1.5 Działanie modyfikatora async\ActionByTheAsyncOperator.cs" />
-    <Compile Include="Chapter1\Listing1.6 Metoda async zwracająca zadanie\VoidSynchronization.cs" />
-    <Compile Include="Chapter1\Listing1.7 Metoda async zwracająca wartość long\LongSynchronization.cs" />
-    <Compile Include="Chapter1\Listing1.8 Obsługa wyjątków zgłaszanych przez metody async\AsyncExceptions.cs" />
-    <Compile Include="Chapter1\Listing1.9 Metoda zajmująca procesor\Math.cs" />
-    <Compile Include="Chapter1\Listion1.10 Obliczenia sekwencyjne\SequenceCalculations.cs" />
+    <Compile Include="Chapter1\Listing1.01 Synchroniczne wykonywanie kodu zawartego w akcji\Creativity\SynchronusCounter.cs" />
+    <Compile Include="Chapter1\Listing1.01 Synchroniczne wykonywanie kodu zawartego w akcji\SynchronusOperation.cs" />
+    <Compile Include="Chapter1\Listing1.02 Użycie zadania do asynchronicznego wykonania kodu\AsynchronusOperation.cs" />
+    <Compile Include="Chapter1\Listing1.03 Wzór metody wykonującej jakąś czynność asynchronicznie\PatternAsynchronus.cs" />
+    <Compile Include="Chapter1\Listing1.04 Przykład użycia modyfikatora async i modyfikatora await\AsyncAwaitExample.cs" />
+    <Compile Include="Chapter1\Listing1.05 Działanie modyfikatora async\ActionByTheAsyncOperator.cs" />
+    <Compile Include="Chapter1\Listing1.06 Metoda async zwracająca zadanie\VoidSynchronization.cs" />
+    <Compile Include="Chapter1\Listing1.07 Metoda async zwracająca wartość long\LongSynchronization.cs" />
+    <Compile Include="Chapter1\Listing1.08 Obsługa wyjątków zgłaszanych przez metody async\AsyncExceptions.cs" />
+    <Compile Include="Chapter1\Listing1.09 Metoda zajmująca procesor\Math.cs" />
+    <Compile Include="Chapter1\Listing1.10 Obliczenia sekwencyjne\SequenceCalculations.cs" />
+    <Compile Include="Chapter1\Listing1.11 Przykład zrównoleglonej pętli for\ParallelCalculation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\TagContainer.cs" />
