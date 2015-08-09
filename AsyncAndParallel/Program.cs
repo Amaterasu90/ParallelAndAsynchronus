@@ -1,5 +1,6 @@
 ﻿using AsyncAndParallel.Chapter1;
 using AsyncAndParallel.Chapter1.Listing1._11_Przykład_zrównoleglonej_pętli_for;
+using AsyncAndParallel.Chapter1.Listing1._12_Przerywanie_pętli_równoległej;
 using AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchronicznego_wykonania_kodu;
 using AsyncAndParallel.Chapter1.Listing1._3_Wzór_metody_wykonującej_jakąś_czynność_asynchronicznie;
 using AsyncAndParallel.Chapter1.Listing1._4_Przykład_użycia_modyfikatora_async_i_modyfikatora_await;
@@ -25,6 +26,9 @@ namespace AsyncAndParallel
 
             Console.WriteLine("Parallel");
             ParallelCalculation.Calculations();
+
+            Console.WriteLine("ParallelBreak");
+            ParallelBreakCalculation.BreakLoop();
 
             Console.ReadKey();
             return 0;
