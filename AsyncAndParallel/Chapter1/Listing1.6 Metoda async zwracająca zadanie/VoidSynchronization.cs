@@ -9,7 +9,7 @@ namespace AsyncAndParallel.Chapter1.Listing1._6_Metoda_async_zwracająca_zadanie
 {
     public class VoidSynchronization
     {
-        private async Task VoidAction()
+        private async Task VoidOperation()
         {
             printMessage("VoidAction: Początek");
             long wynik = await AsyncAction("async/await");
@@ -36,7 +36,7 @@ namespace AsyncAndParallel.Chapter1.Listing1._6_Metoda_async_zwracająca_zadanie
         public async void ProofOfAsyncWork()
         {
             printMessage("ProofOfAsyncWork: Początek");
-            await VoidAction();
+            await VoidOperation();
             printMessage("ProofOfAsyncWork: Koniec");
         }
 
