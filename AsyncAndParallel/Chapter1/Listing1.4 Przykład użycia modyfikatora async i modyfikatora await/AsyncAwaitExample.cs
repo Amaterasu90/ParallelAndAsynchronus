@@ -27,7 +27,8 @@ namespace AsyncAndParallel.Chapter1.Listing1._4_Przykład_użycia_modyfikatora_a
 
         private void printMessage(string messageContent)
         {
-            Console.WriteLine(messageContent);
+            String taskID = Task.CurrentId.HasValue ? Task.CurrentId.ToString() : "UI";
+            Console.WriteLine("! " + messageContent + " (" + taskID + ")");
         }
 
         public async void runAsyncTask()
