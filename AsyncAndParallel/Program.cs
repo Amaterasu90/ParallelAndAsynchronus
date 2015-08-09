@@ -5,6 +5,7 @@ using AsyncAndParallel.Chapter1.Listing1._4_Przykład_użycia_modyfikatora_async
 using AsyncAndParallel.Chapter1.Listing1._5_Działanie_modyfikatora_async;
 using AsyncAndParallel.Chapter1.Listing1._6_Metoda_async_zwracająca_zadanie;
 using AsyncAndParallel.Chapter1.Listing1._7_Metoda_async_zwracająca_wartość_long;
+using AsyncAndParallel.Chapter1.Listing1._8_Obsługa_wyjątków_zgłaszanych_przez_metody_async;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,8 @@ namespace AsyncAndParallel
     {
         public static int Main(string[] args)
         {
-            LongSynchronization longSynchronization = new LongSynchronization();
-            longSynchronization.ProofAsyncWork();
+            AsyncExceptions asyncException = new AsyncExceptions();
+            asyncException.ProofOfAsyncWork();
 
             Console.ReadKey();
             return 0;
