@@ -1,8 +1,6 @@
-﻿using AsyncAndParallel.Chapter1.Listing1._11_Przykład_zrównoleglonej_pętli_for;
-using AsyncAndParallel.Chapter1.Listing1._12_Przerywanie_pętli_równoległej;
-using AsyncAndParallel.Chapter1.Listing1._10_Obliczenia_sekwencyjne;
+﻿using AsyncAndParallel.Chapter2.Listing2._1_Kod_Niezrównoleglony;
+using AsyncAndParallel.Chapter2.Listing2._2_Tworzenie_i_uruchamianie_wątku;
 using System;
-using AsyncAndParallel.Chapter2.Listing2._1_Kod_Niezrównoleglony;
 
 namespace AsyncAndParallel
 {
@@ -13,6 +11,10 @@ namespace AsyncAndParallel
             Console.WriteLine("Sequence");
             SequenceMonteCarlo sequenceMonteCarlo = new SequenceMonteCarlo();
             sequenceMonteCarlo.runCalculations();
+
+            Console.WriteLine("Thread");
+            ThreadMonteCarlo threadMonteCarlo = new ThreadMonteCarlo();
+            threadMonteCarlo.run();
 
             Console.ReadKey();
             return 0;
