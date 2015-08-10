@@ -1,4 +1,4 @@
-﻿using AsyncAndParallel.Chapter1.Listion1._10_Obliczenia_sekwencyjne;
+﻿using AsyncAndParallel.Chapter1.Listing1._10_Obliczenia_sekwencyjne;
 using System;
 using System.Collections.Generic;
 using System.Linq;

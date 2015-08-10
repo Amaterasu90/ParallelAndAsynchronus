@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AsyncAndParallel.Chapter1.Listion1._10_Obliczenia_sekwencyjne
+namespace AsyncAndParallel.Chapter1.Listing1._10_Obliczenia_sekwencyjne
 {
     public static class SequenceCalculations
     {

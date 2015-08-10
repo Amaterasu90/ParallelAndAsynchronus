@@ -73,6 +73,7 @@
     <Compile Include="Chapter1\Listing1.10 Obliczenia sekwencyjne\SequenceCalculations.cs" />
     <Compile Include="Chapter1\Listing1.11 Przykład zrównoleglonej pętli for\ParallelCalculation.cs" />
     <Compile Include="Chapter1\Listing1.12 Przerywanie pętli równoległej\ParallelBreakCalculation.cs" />
+    <Compile Include="Chapter2\Listing2. 1 Kod Niezrównoleglony\SequenceMonteCarlo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\TagContainer.cs" />
