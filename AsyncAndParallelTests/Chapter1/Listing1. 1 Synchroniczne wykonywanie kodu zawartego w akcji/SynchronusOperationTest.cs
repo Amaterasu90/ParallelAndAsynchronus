@@ -18,7 +18,7 @@ namespace AsyncAndParallelTests
         [Test]
         public void countElapsedTime_run_1000()
         {
-            long expected = 1000;
+            long expected = 100;
 
             long actual = defaultSynchronus.makeThreadAction();
 
@@ -45,6 +45,12 @@ namespace AsyncAndParallelTests
             string actual = ((FakeOperationSynchronus)defaultSynchronus).getDataPrintMessage();
 
             Assert.AreEqual(expected, actual);
+        }
+        
+        [TearDown]
+        public void dispose()
+        {
+            defaultSynchronus = null;
         }
     }
 }

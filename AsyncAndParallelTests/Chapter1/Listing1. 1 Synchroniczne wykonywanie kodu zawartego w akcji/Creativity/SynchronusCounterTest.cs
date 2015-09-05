@@ -13,7 +13,7 @@ namespace AsyncAndParallelTests.Chapter1.Creativity
     {
         SynchronusCounter defaultSynchronusCounter;
         [SetUp]
-        public void initialize()
+        public void init()
         {
             defaultSynchronusCounter = new FakeSynchronusCounter();
         }
@@ -60,14 +60,6 @@ namespace AsyncAndParallelTests.Chapter1.Creativity
             Assert.AreEqual(expected, actual);
         }
 
-        [Test]
-        public void countElapsedTime_run_1000()
-        {
-            int expected = 1000;
-
-            int actual = defaultSynchronusCounter.countElapsedTime();
-
-            Assert.AreEqual(expected, actual);
-        }
+        
     }
 }

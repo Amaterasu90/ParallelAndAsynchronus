@@ -32,6 +32,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Codeplex.Unity.AutoRegister">
+      <HintPath>..\packages\Unity.AutoRegister.0.2\lib\net40\Codeplex.Unity.AutoRegister.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception">
+      <HintPath>..\packages\Unity.Interception.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
+      <HintPath>..\packages\Unity.Interception.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.core">
       <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.dll</HintPath>
       <Private>False</Private>
@@ -63,6 +84,9 @@
     <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\Creativity\SynchronusCounter.cs" />
     <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\SynchronusOperation.cs" />
     <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\AsynchronusOperation.cs" />
+    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\TaskProvider.cs" />
+    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\TimeProvider.cs" />
+    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\WaitingManager.cs" />
     <Compile Include="Chapter1\Listing1. 3 Wzór metody wykonującej jakąś czynność asynchronicznie\PatternAsynchronus.cs" />
     <Compile Include="Chapter1\Listing1. 4 Przykład użycia modyfikatora async i modyfikatora await\AsyncAwaitExample.cs" />
     <Compile Include="Chapter1\Listing1. 5 Działanie modyfikatora async\ActionByTheAsyncOperator.cs" />

@@ -16,7 +16,6 @@ namespace AsyncAndParallel
             ThreadMonteCarlo threadMonteCarlo = new ThreadMonteCarlo();
             threadMonteCarlo.run();
 
-            Console.ReadKey();
             return 0;
         }
     }
