@@ -5,25 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchronicznego_wykonania_kodu;
 
 namespace AsyncAndParallelTests
 {
     class FakeOperationSynchronus : SynchronusOperation
     {
-        public FakeOperationSynchronus()
+        public FakeOperationSynchronus() : base(new SynchronusActionProvider(new WaitingManager()))
         {
-            this.taskCurrentIdToString = "1";
-        }
-
-        public bool TaskCurrentIdNotNull
-        {
-            get { return this.taskCurrentIdNotNull; }
-            set { this.taskCurrentIdNotNull = value; }
-        }
-
-        public new string getDataPrintMessage()
-        {
-            return base.getDataPrintMessage();
         }
     }
 }

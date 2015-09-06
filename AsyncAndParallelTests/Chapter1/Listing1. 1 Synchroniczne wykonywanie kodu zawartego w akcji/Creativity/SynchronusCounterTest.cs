@@ -6,24 +6,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchronicznego_wykonania_kodu;
 
 namespace AsyncAndParallelTests.Chapter1.Creativity
 {
     [TestFixture]
     class SynchronusCounterTest : SynchronusOperationTest
     {
-        SynchronusCounter defaultSynchronusCounter;
+        private FakeSynchronusCounter _defaultSynchronusCounter;
+        private SynchronusActionProvider _provider;
+        private WaitingManager _waitingManager;
         [SetUp]
         public void init()
         {
-            defaultSynchronusCounter = new FakeSynchronusCounter();
+            _waitingManager = new WaitingManager();
+            _provider = new SynchronusActionProvider(_waitingManager);
+            _defaultSynchronusCounter = new FakeSynchronusCounter(_provider);
         }
         [Test]
         public void defaultConstructor_getTimestep_10()
         {
             int expected = 10;
 
-            int actual = ((FakeSynchronusCounter)defaultSynchronusCounter).TimeStep;
+            int actual = _defaultSynchronusCounter.TimeStep;
 
             Assert.AreEqual(expected, actual);
         }
@@ -33,9 +38,9 @@ namespace AsyncAndParallelTests.Chapter1.Creativity
         {
             int expected = 200;
 
-            ((SynchronusCounter)defaultSynchronusCounter).TimeStep = 200;
+            ((SynchronusCounter)_defaultSynchronusCounter).TimeStep = 200;
 
-            int actual = ((FakeSynchronusCounter)defaultSynchronusCounter).TimeStep;
+            int actual = ((FakeSynchronusCounter)_defaultSynchronusCounter).TimeStep;
             Assert.AreEqual(expected, actual);
         }
 
@@ -44,9 +49,9 @@ namespace AsyncAndParallelTests.Chapter1.Creativity
         {
             int expected = 1;
 
-            ((SynchronusCounter)defaultSynchronusCounter).TimeStep = 0;
+            ((SynchronusCounter)_defaultSynchronusCounter).TimeStep = 0;
 
-            int actual = ((FakeSynchronusCounter)defaultSynchronusCounter).TimeStep;
+            int actual = ((FakeSynchronusCounter)_defaultSynchronusCounter).TimeStep;
             Assert.AreEqual(expected, actual);
         }
 
@@ -55,9 +60,9 @@ namespace AsyncAndParallelTests.Chapter1.Creativity
         {
             int expected = 1;
 
-            ((SynchronusCounter)defaultSynchronusCounter).TimeStep = -1;
+            ((SynchronusCounter)_defaultSynchronusCounter).TimeStep = -1;
 
-            int actual = ((FakeSynchronusCounter)defaultSynchronusCounter).TimeStep;
+            int actual = ((FakeSynchronusCounter)_defaultSynchronusCounter).TimeStep;
             Assert.AreEqual(expected, actual);
         }
 

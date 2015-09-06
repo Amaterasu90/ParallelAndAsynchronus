@@ -18,22 +18,9 @@ namespace AsyncAndParallelTests.Chapter1.Creativity
         
         private readonly FakeOperationSynchronus fakeOperationSynchronus = 
             new FakeOperationSynchronus();
-            
-        public new string getDataPrintMessage()
-        {
-            return fakeOperationSynchronus.getDataPrintMessage();
-        }
 
-        public bool TaskCurrentIdNotNull
+        public FakeSynchronusCounter(SynchronusActionProvider provider) : base(provider)
         {
-            get
-            {
-                return base.taskCurrentIdNotNull;
-            }
-            set
-            {
-                base.taskCurrentIdNotNull = value;
-            }
         }
     }
 }

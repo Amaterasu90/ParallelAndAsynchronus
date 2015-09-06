@@ -13,6 +13,7 @@ namespace AsyncAndParallel.Chapter1.Listing1._1_Synchroniczne_wykonywanie_kodu_z
     public class SynchronusCounter : SynchronusOperation
     {
         protected int timeStep = 10;
+        private static int TotalSleepTime = 100;
 
         public int TimeStep
         {
@@ -24,23 +25,22 @@ namespace AsyncAndParallel.Chapter1.Listing1._1_Synchroniczne_wykonywanie_kodu_z
             }
         }
 
-        protected override void threadOperations()
+        protected void ThreadOperations()
         {
-            for (int elapsedTime = 0; elapsedTime < SynchronusCounter.totalSleepTime; elapsedTime += timeStep)
+            for (int elapsedTime = 0; elapsedTime < SynchronusCounter.TotalSleepTime; elapsedTime += timeStep)
             {
                 Thread.Sleep(timeStep);
                 printElapsedTime(elapsedTime);
             }
         }
 
-        public int countElapsedTime()
-        {
-            return base.makeThreadAction();
-        }
-
         private void printElapsedTime(int time)
         {
             Console.WriteLine("Synchronus (blocking) elapsed time: " + time);
+        }
+
+        public SynchronusCounter(SynchronusActionProvider provider) : base(provider)
+        {
         }
     }
 }

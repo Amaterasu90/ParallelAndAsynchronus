@@ -1,85 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchronicznego_wykonania_kodu
 {
-    public class AsynchronusOperation
+    public class AsynchronusOperation : Operation
     {
-        protected TimeProvider tProvider;
+        private TaskProvider _taskProvider;
 
-        private WaitingManager wManager;
-        private Stream stream;
-
-        protected bool taskCurrentIdNotNull = Task.CurrentId.HasValue;
-        protected string taskCurrentIdToString = Task.CurrentId.ToString();
-
-        protected TaskProvider taskManager;
-        public AsynchronusOperation(WaitingManager manager, Stream stream)
+        public AsynchronusOperation(AsynchronusActionProvider provider) : base(provider)
         {
-            wManager = manager;
-            this.stream = stream;
-            StreamWriter writer = new StreamWriter(this.stream);
-            Console.SetOut(writer);
-
-            tProvider = new TimeProvider();
-            
-            Func<object, long> akcja = createAction();
-            Task<long> job = new Task<long>(akcja, "zadanie");
-            taskManager = new TaskProvider(job);
-        }
-        protected Func<object,long> createAction()
-        {
-            return (object argument) =>
-                {
-                    runOperations(argument);
-                    return DateTimeNowTicks;
-                };
-        }
-        protected void runOperations(object argument)
-        {
-            printMessage("Akcja: Początek, argument: " + argument.ToString());
-            Sleep();
-            printMessage("Akcja: Koniec");
-        }
-        protected long DateTimeNowTicks
-        {
-            get { return tProvider.DateTimeTicks; }
+            Provider = provider;
+            var akcja = provider.ActionDelegate;
+            var job = new Task<long>(akcja, "zadanie");
+            _taskProvider = new TaskProvider(job);
         }
 
-        public void runThreadAction()
+        protected void SetTaskProvider(TaskProvider taskProvider)
         {
-            taskManager.Start();
-            printMessage("Start action: Początek");
-            if (taskManager.Status != TaskStatus.Running &&
-                taskManager.Status != TaskStatus.RanToCompletion)
-                printMessage("Zadanie nie zostało uruchomione");
+            _taskProvider = taskProvider;
+        }
+
+        public override void RunAction()
+        {
+            _taskProvider.Start();
+            StreamPrinter.PrintMessage("Start action: Początek", TaskProvider.getTaskCurrentIdToString());
+            if (_taskProvider.Status != TaskStatus.Running &&
+                _taskProvider.Status != TaskStatus.RanToCompletion)
+                StreamPrinter.PrintMessage("Zadanie nie zostało uruchomione", TaskProvider.getTaskCurrentIdToString());
             else
-                printMessage("Wynik: " + taskManager.Result);
+                StreamPrinter.PrintMessage("Wynik: " + _taskProvider.Result, TaskProvider.getTaskCurrentIdToString());
 
 
-            printMessage("Start action: Koniec");
-        }
-        protected string getDataPrintMessage()
-        {
-            return taskCurrentIdNotNull ? taskCurrentIdToString : "UI";
-        }
-
-        protected void printMessage(String komunikat)
-        {
-            string taskID = getDataPrintMessage();
-            Console.Out.WriteLine("! " + komunikat + " (" + taskID + ")");
-            Console.Out.Flush();
-        }
-
-        protected void Sleep()
-        {
-            wManager.Sleep();
+            StreamPrinter.PrintMessage("Start action: Koniec", TaskProvider.getTaskCurrentIdToString());
         }
     }
 }

@@ -17,165 +17,70 @@ namespace AsyncAndParallelTests.Listing1._2_Użycie_zadania_do_asynchronicznego_
     {
         FakeAsynchronusOperation defaultAsynchronusOperation;
         Mock<WaitingManager> manager;
-        Mock<TimeProvider> provider;
+        Mock<TaskProvider> taskProvider;
+        Mock<TimeProvider> timeProvider;
+        FakeActionProvider actionProvider;
         MemoryStream stream;
-        Mock<TaskProvider> taskManager;
+        StreamReader reader;
         [SetUp]
         public void initailize()
         {
             stream = new MemoryStream();
-            provider = new Mock<TimeProvider>();
+            reader = new StreamReader(stream);
+            StreamPrinter.SetStream(stream);
+            
             manager = new Mock<WaitingManager>();
-            Func<object, long> f = (object Arg)=>{return 1;};
-            object[] o = new object[]{new Task<long>(f,"zadanie")};
-            taskManager = new Mock<TaskProvider>(o);
-            defaultAsynchronusOperation = new FakeAsynchronusOperation(manager.Object, stream, provider.Object,
-                taskManager.Object);
-        }
+            timeProvider = new Mock<TimeProvider>();
 
-        [Test]
-        public void Sleep_defaultWaitingManager_SleepWasCalled()
-        {
-            manager.Setup(m => m.Sleep()).Verifiable();
-
-            defaultAsynchronusOperation.Sleep();
-
-            manager.Verify(m => m.Sleep());
-        }
-
-        [Test]
-        public void getDataPrintMessage_taskCurrentIdNotNullfalse_UIString()
-        {
-            String expected = "UI";
-            defaultAsynchronusOperation.TaskCurrentIdNotNull = false;
-
-            String actual = defaultAsynchronusOperation.getDataPrintMessage();
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void getDataPrintMessage_taskCurrentIdNotNulltrue_notEmptyString()
-        {
-            defaultAsynchronusOperation.TaskCurrentIdNotNull = true;
-
-            String anObject = defaultAsynchronusOperation.getDataPrintMessage();
-
-            Assert.NotNull(anObject);
-        }
-
-        [Test]
-        public void printMessage_taskCurrentIdNotNullfalse_Ciastek_UIString()
-        {
-            String message = "Ciastek";
-            String expected = "! " + message + " (UI)";
+            Func<object, long> f = (object argument) => { return 1; };
+            Task<long> task = new Task<long>(f, "default");
+            object[] o = new object[] { task };
+            taskProvider = new Mock<TaskProvider>(o);
             
-            defaultAsynchronusOperation.printMessage(message);
+            actionProvider = new FakeActionProvider(manager.Object,taskProvider.Object,timeProvider.Object);
+            defaultAsynchronusOperation = new FakeAsynchronusOperation(actionProvider,taskProvider.Object);
+        }
 
-            String actual = defaultAsynchronusOperation.Reader.ReadToEnd().Trim();
-            Assert.AreEqual(expected, actual);
+        private void Rewind(Stream stream)
+        {
+            stream.Position = 0;
         }
 
         [Test]
-        public void createAction_defaultConstructor_notNull()
+        public void runThreadAction_dateTimeTicks1TaskStatusRunning_properString()
         {
-            Func<object, long> anObject = defaultAsynchronusOperation.createAction();
+            int dateTime = 1;
+            String expected = "! Start action: Początek (UI)\r\n" +
+                "! Wynik: 1 (UI)\r\n" +
+                "! Start action: Koniec (UI)\r\n";
 
-            Assert.NotNull(anObject);
-        }
+            taskProvider.Setup(m => m.Result).Returns(dateTime);
+            taskProvider.Setup(m => m.Status).Returns(TaskStatus.Running);
 
-        [Test]
-        public void runOperations_argumentDefaultString_SleepWasCalled()
-        {
-            String argument = "default";
-            manager.Setup(m => m.Sleep()).Verifiable();
+            defaultAsynchronusOperation.RunAction();
 
-            defaultAsynchronusOperation.runOperations(argument);
-
-            manager.Verify(m => m.Sleep());
-        }
-
-        [Test]
-        public void DateTimeNowTicks_defaultConstructor_100()
-        {
-            long expected = 100;
-            provider.Setup(m => m.DateTimeTicks).Returns(100);
-
-            long actual = defaultAsynchronusOperation.DateTimeNowTicks;
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void runOperations_argumentDefaultString_Akcja_Poczatek_argument_default_UI_Akcja_KoniecString()
-        {
-            String argument = "default";
-            String expected = "! Akcja: Początek, argument: " + argument +" (UI)\r\n! Akcja: Koniec (UI)\r\n";
-            
-            defaultAsynchronusOperation.runOperations(argument);
-            
-            String actual = defaultAsynchronusOperation.Reader.ReadToEnd();
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void runThreadAction_argumentZadanieString_StartWasCalled()
-        {
-            taskManager.Setup(m => m.Start()).Verifiable();
-            
-            defaultAsynchronusOperation.runThreadAction();
-
-            taskManager.Verify(m => m.Start());
-        }
-
-        [Test]
-        public void reunThreadAction_taskStatusRunningFalseAndTaskStatusRanToComplectionFalse_ProperMessage()
-        {
-            taskManager.Setup(m => m.Status).Returns(TaskStatus.Created);
-            String expected = "! Start action: Początek (UI)\r\n"
-                + "! Zadanie nie zostało uruchomione (UI)\r\n"
-                + "! Start action: Koniec (UI)\r\n";
-
-            defaultAsynchronusOperation.runThreadAction();
-
-            String actual = defaultAsynchronusOperation.Reader.ReadToEnd();
+            Rewind(stream);
+            String actual = reader.ReadToEnd();
             Assert.AreEqual(expected, actual);
         }
         [Test]
-        public void reunThreadAction_taskStatusRunningTrue_ProperMessage()
+        public void runThreadAction_dateTimeTicks1TaskStatusCreated_properString()
         {
-            long result = 1;
-            taskManager.Setup(m => m.Status).Returns(TaskStatus.Running);
-            taskManager.Setup(m => m.Result).Returns(result);
-            String expected = "! Start action: Początek (UI)\r\n"
-                + "! Wynik: "+ result +" (UI)\r\n"
-                + "! Start action: Koniec (UI)\r\n";
+            String expected = "! Start action: Początek (UI)\r\n" +
+                "! Zadanie nie zostało uruchomione (UI)\r\n" +
+                "! Start action: Koniec (UI)\r\n";
+            taskProvider.Setup(m => m.Status).Returns(TaskStatus.Created);
 
-            defaultAsynchronusOperation.runThreadAction();
+            defaultAsynchronusOperation.RunAction();
 
-            String actual = defaultAsynchronusOperation.Reader.ReadToEnd();
+            Rewind(stream);
+            String actual = reader.ReadToEnd();
             Assert.AreEqual(expected, actual);
         }
-
-        [Test]
-        public void createActionInvoke_defaultConstructor_100()
-        {
-            String argument = "default";
-            long expected = 100;
-            provider.Setup(m => m.DateTimeTicks).Returns(expected);
-
-            long actual = defaultAsynchronusOperation.createAction().Invoke(argument);
-
-            Assert.AreEqual(expected, actual);
-        }
-
         [TearDown]
         public void dispose()
         {
             this.manager = null;
-            this.provider = null;
-            stream.Close();
-            stream.Dispose();
         }
     }
 }

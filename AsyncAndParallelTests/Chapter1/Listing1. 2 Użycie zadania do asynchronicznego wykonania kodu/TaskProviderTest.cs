@@ -9,15 +9,18 @@ namespace AsyncAndParallelTests.Chapter1.Listing1._2_Użycie_zadania_do_asynchro
     [TestFixture]
     public class TaskProviderTest
     {
-        TaskProvider taskProvider;
-        Mock<TaskProvider> mockProvider;
-        TaskProvider provider;
+        private Mock<TaskProvider> mockProvider;
+        private TaskProvider provider;
+        private Task<long> task;
         [SetUp]
         public void initialize()
         {
             Func<object, long> f = (object Arg) => { return 1; };
-            Task<long> task = new Task<long>(f, "zadanie");
+            task = new Task<long>(f, "zadanie");
             provider = new TaskProvider(task);
+
+            object[] o = new object[]{task};
+            mockProvider = new Mock<TaskProvider>(o);
         }
         [Test]
         public void Start_defaultConstructor_RunningTaskStatus()
@@ -47,6 +50,52 @@ namespace AsyncAndParallelTests.Chapter1.Listing1._2_Użycie_zadania_do_asynchro
             long actual = provider.Result;
             
             Assert.AreEqual(expected, actual);
+        }
+        [Test]
+        public void TaskCurrentIdToString_defaultConstructor_0()
+        {
+            String expected = String.Empty;
+
+            String actual = provider.TaskCurrentIdToString;
+
+            Assert.AreEqual(expected, actual);
+        }
+        [Test]
+        public void PrintMessage_TaskCurrentIdNotNullFalse_UIString()
+        {
+            String expected = "UI";
+            mockProvider.Setup(m => m.TaskCurrentIdNotNull).Returns(false);
+            FakeTaskProvider fakeProvider = new FakeTaskProvider(mockProvider.Object, task);
+
+            String actual = fakeProvider.PrintMessage;
+
+            Assert.AreEqual(expected, actual);
+        }
+        [Test]
+        public void PrintMessage_TaskCurrentIdNotNullTrue_null()
+        {
+            mockProvider.Setup(m => m.TaskCurrentIdNotNull).Returns(true);
+            FakeTaskProvider fakeProvider = new FakeTaskProvider(mockProvider.Object, task);
+
+            String anObject = fakeProvider.PrintMessage;
+
+            Assert.Null(anObject);
+        }
+
+        [Test]
+        public void TaskCurrentIdNotNull_defaultConstuctor_false()
+        {
+            bool expected = false;
+
+            bool actual = this.provider.TaskCurrentIdNotNull;
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TearDown]
+        public void dispose()
+        {
+            this.mockProvider = null;
+            this.provider = null;
         }
     }
 }

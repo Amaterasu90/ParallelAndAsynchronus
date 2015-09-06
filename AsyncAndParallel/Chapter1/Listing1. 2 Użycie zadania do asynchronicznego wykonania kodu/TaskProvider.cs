@@ -28,5 +28,29 @@ namespace AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchroniczn
         {
             get { return job.Result; }
         }
+
+        public virtual Boolean TaskCurrentIdNotNull
+        {
+            get { return TaskProvider.STaskCurrentIdNotNull; }
+        }
+
+        public virtual String TaskCurrentIdToString
+        {
+            get { return TaskProvider.getTaskCurrentIdToString(); }
+        }
+        public string PrintMessage
+        {
+            get { return this.TaskCurrentIdNotNull ? this.TaskCurrentIdToString : "UI"; }
+        }
+
+        private static Boolean STaskCurrentIdNotNull
+        {
+            get { return Task.CurrentId.HasValue; }
+        }
+
+        public static String getTaskCurrentIdToString()
+        {
+            return Task.CurrentId.ToString();
+        }
     }
 }

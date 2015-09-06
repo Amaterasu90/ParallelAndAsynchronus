@@ -1,4 +1,5 @@
-﻿using AsyncAndParallel.Utils;
+﻿using AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchronicznego_wykonania_kodu;
+using AsyncAndParallel.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,44 +10,19 @@ using System.Threading.Tasks;
 
 namespace AsyncAndParallel.Chapter1.Listing1._1_Synchroniczne_wykonywanie_kodu_zawartego_w_akcji
 {
-    public class SynchronusOperation
+    public class SynchronusOperation : Operation
     {
-        protected static readonly int totalSleepTime = 100;
-        protected virtual void threadOperations()
+        private readonly SynchronusActionProvider _provider;
+        public SynchronusOperation(SynchronusActionProvider provider) : base(provider)
         {
-            Thread.Sleep(totalSleepTime);
+            this._provider = provider;
         }
 
-        public int makeThreadAction()
+        public override void RunAction()
         {
-            Func<object, long> akcja =
-                (object argument) =>
-                {
-                    printMessage("Akcja: Początek, argument: " + argument.ToString());
-                    threadOperations();
-                    printMessage("Akcja: Koniec");
-                    return DateTime.Now.Ticks;
-                };
-
-            printMessage("Start action: Początek");
-            printMessage("Wynik: " + akcja("synchronicznie"));
-            printMessage("Start action: Koniec");
-
-            return totalSleepTime;
-        }
-
-        protected bool taskCurrentIdNotNull = Task.CurrentId.HasValue;
-        protected string taskCurrentIdToString = Task.CurrentId.ToString();
-
-        protected string getDataPrintMessage()
-        {
-            return taskCurrentIdNotNull ? taskCurrentIdToString : "UI";
-        }
-
-        private void printMessage(String komunikat)
-        {
-            string taskID = getDataPrintMessage();
-            Console.WriteLine("! " + komunikat + " (" + taskID + ")");
+            StreamPrinter.PrintMessage("Start action: Początek");
+            StreamPrinter.PrintMessage("Wynik: " + _provider.ActionDelegate("synchronicznie"));
+            StreamPrinter.PrintMessage("Start action: Koniec");
         }
     }
 }
