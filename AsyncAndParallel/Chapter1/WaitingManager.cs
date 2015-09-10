@@ -30,5 +30,15 @@ namespace AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchroniczn
                 TotalSleepTime = 100;
             Thread.Sleep(TotalSleepTime);
         }
+
+        public override bool Equals(Object o)
+        {
+            if (o == null || !(o is WaitingManager))
+                return false;
+            WaitingManager waitingManager = o as WaitingManager;
+            if (waitingManager.TotalSleepTime.Equals(TotalSleepTime))
+                return true;
+            return false;
+        }
     }
 }

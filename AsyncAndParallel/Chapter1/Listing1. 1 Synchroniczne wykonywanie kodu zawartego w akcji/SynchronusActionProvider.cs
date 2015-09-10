@@ -9,7 +9,6 @@ namespace AsyncAndParallel.Chapter1.Listing1._1_Synchroniczne_wykonywanie_kodu_z
 {
     public class SynchronusActionProvider : ActionProvider
     {
-
         protected override void RunOperations(object argument)
         {
             StreamPrinter.PrintMessage("Akcja: Początek, argument: " + argument.ToString());
@@ -24,13 +23,25 @@ namespace AsyncAndParallel.Chapter1.Listing1._1_Synchroniczne_wykonywanie_kodu_z
                 return (object argument) =>
                 {
                     RunOperations(argument);
-                    return DateTime.Now.Ticks;
+                    return TimeProvider.DateTimeTicks;
                 };
             }
         }
 
         public SynchronusActionProvider(WaitingManager manager) : base(manager)
         {
+            this.TimeProvider = new TimeProvider();
+        }
+
+        public override bool Equals(Object o)
+        {
+            if (o != null && o is SynchronusActionProvider)
+            {
+                SynchronusActionProvider provider = o as SynchronusActionProvider;
+                if (provider.WaitingManager.Equals(WaitingManager))
+                    return true;
+            }
+            return false;
         }
     }
 }

@@ -138,6 +138,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\JetBrains.Platform.Lib.System.Windows.Interactivity.2.0.20140318.0\lib\System.Windows.Interactivity.dll</HintPath>
@@ -156,16 +158,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Chapter1\ActionProvider.cs" />
-    <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\Creativity\SynchronusCounter.cs" />
+    <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\SynchronusAction.cs" />
+    <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\Builder.cs" />
     <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\SynchronusActionProvider.cs" />
-    <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\SynchronusOperation.cs" />
-    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\AsynchronusActionProvider.cs" />
-    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\AsynchronusOperation.cs" />
-    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\StreamPrinter.cs" />
-    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\TaskProvider.cs" />
-    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\TimeProvider.cs" />
-    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\WaitingManager.cs" />
-    <Compile Include="Chapter1\Listing1. 3 Wzór metody wykonującej jakąś czynność asynchronicznie\PatternAsynchronus.cs" />
+    <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\SynchrousActionBuilder.cs" />
+    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\AsynchronusAction.cs" />
+    <Compile Include="Chapter1\StreamPrinter.cs" />
+    <Compile Include="Chapter1\TimeProvider.cs" />
+    <Compile Include="Chapter1\WaitingManager.cs" />
     <Compile Include="Chapter1\Listing1. 4 Przykład użycia modyfikatora async i modyfikatora await\AsyncAwaitExample.cs" />
     <Compile Include="Chapter1\Listing1. 5 Działanie modyfikatora async\ActionByTheAsyncOperator.cs" />
     <Compile Include="Chapter1\Listing1. 6 Metoda async zwracająca zadanie\VoidSynchronization.cs" />
@@ -175,7 +175,6 @@
     <Compile Include="Chapter1\Listing1.10 Obliczenia sekwencyjne\SequenceCalculations.cs" />
     <Compile Include="Chapter1\Listing1.11 Przykład zrównoleglonej pętli for\ParallelCalculation.cs" />
     <Compile Include="Chapter1\Listing1.12 Przerywanie pętli równoległej\ParallelBreakCalculation.cs" />
-    <Compile Include="Chapter1\Operation.cs" />
     <Compile Include="Chapter2\Listing2. 1 Kod Niezrównoleglony\SequenceMonteCarlo.cs" />
     <Compile Include="Chapter2\Listing2. 2 Tworzenie i uruchamianie wątku\ThreadMonteCarlo.cs" />
     <Compile Include="Program.cs" />
@@ -184,11 +183,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Chapter1\Listing1. 3 Wzór metody wykonującej jakąś czynność asynchronicznie\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\JetBrains.Platform.Core.Shell.103.0.20150818.190334\build\JetBrains.Platform.Core.Shell.Targets" Condition="Exists('..\packages\JetBrains.Platform.Core.Shell.103.0.20150818.190334\build\JetBrains.Platform.Core.Shell.Targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

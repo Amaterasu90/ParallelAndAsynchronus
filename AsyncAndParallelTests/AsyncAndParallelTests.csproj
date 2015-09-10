@@ -161,19 +161,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\Creativity\FakeSynchronusCounter.cs" />
-    <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\Creativity\SynchronusCounterTest.cs" />
-    <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\FakeSynchronusOperation.cs" />
-    <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\SynchronusOperationTest.cs" />
+    <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\FakeSynchronusAction.cs" />
+    <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\FakeSynchronusActionProvider.cs" />
+    <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\FakeSynchrousActionBuilder.cs" />
     <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\SynchronusActionProviderTest.cs" />
-    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\AsynchronusOperationTest.cs" />
-    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\FakeActionProvider.cs" />
-    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\FakeAsynchronusOperation.cs" />
-    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\FakeTaskProvider.cs" />
-    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\TaskProviderTest.cs" />
-    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\TimeProviderTest.cs" />
-    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\AsynchronusActionProviderTest.cs" />
-    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\WaitingManagerTest.cs" />
+    <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\SynchronusActionTest.cs" />
+    <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\SynchrousActionBuilderTest.cs" />
+    <Compile Include="Chapter1\TimeProviderTest.cs" />
+    <Compile Include="Chapter1\WaitingManagerTest.cs" />
     <Compile Include="Chapter1\ActionProviderTest.cs" />
     <Compile Include="MainTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -186,6 +181,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\" />
+    <Folder Include="Chapter1\Listing1. 3 Wzór metody wykonującej jakąś czynność asynchronicznie\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

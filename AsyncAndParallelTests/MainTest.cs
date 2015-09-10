@@ -14,11 +14,6 @@ namespace AsyncAndParallelTests
         [Test]
         public void main_run_0()
         {
-            int expected = 0;
-
-            int actual = Program.Main(null);
-
-            Assert.AreEqual(expected, actual);
         }
     }
 }
