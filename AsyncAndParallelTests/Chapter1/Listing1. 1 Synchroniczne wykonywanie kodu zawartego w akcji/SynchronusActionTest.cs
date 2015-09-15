@@ -4,6 +4,7 @@ using AsyncAndParallel.Chapter1.Listing1._1_Synchroniczne_wykonywanie_kodu_zawar
 using AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchronicznego_wykonania_kodu;
 using Moq;
 using System.IO;
+using AsyncAndParallel.Chapter1;
 
 namespace AsyncAndParallelTests.Chapter1.Listing1._1_Synchroniczne_wykonywanie_kodu_zawartego_w_akcji
 {
@@ -33,11 +34,11 @@ namespace AsyncAndParallelTests.Chapter1.Listing1._1_Synchroniczne_wykonywanie_k
         {
             int result = 1;
             _mockTimeProvider.Setup(m => m.DateTimeTicks).Returns(result);
-            String expected = "Run: Początek\r\n" +
+            String expected = "RunOperations: Początek\r\n" +
                               "Akcja: Początek, argument: synchronicznie\r\n" +
                               "Akcja: Koniec\r\n" +
                               "Wynik: " + result + "\r\n" +
-                              "Run: Koniec\r\n";
+                              "RunOperations: Koniec\r\n";
 
             _synchronusAction.Run();
 

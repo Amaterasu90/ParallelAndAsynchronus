@@ -4,16 +4,10 @@ using Moq;
 using AsyncAndParallel.Chapter1.Listing1._1_Synchroniczne_wykonywanie_kodu_zawartego_w_akcji;
 using System.IO;
 using System;
+using AsyncAndParallel.Chapter1;
 
 namespace AsyncAndParallelTests.Chapter1.Listing1._1_Synchroniczne_wykonywanie_kodu_zawartego_w_akcji
 {
-    public interface IEqualsTest
-    {
-        void Equals_nullArgument_false();
-        void Equals_notProperArgumentType_false();
-        void Equals_TheSameObject_true();
-        void Equals_NotEqualsArgument_false();
-    }
 
     [TestFixture]
     public class SynchronusActionProviderTest : IEqualsTest

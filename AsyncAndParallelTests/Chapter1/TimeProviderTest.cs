@@ -14,7 +14,7 @@ namespace AsyncAndParallelTests.Chapter1
             _timeProvider = new TimeProvider(new DateTime());
         }
         [Test]
-        public void TestMethod1()
+        public void DateTimeTicks_newDatetimeConstruct_Ticks0()
         {
             long expected = new DateTime().Ticks;
 

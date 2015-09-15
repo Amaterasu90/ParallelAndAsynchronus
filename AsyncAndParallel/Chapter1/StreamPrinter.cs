@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchronicznego_wykonania_kodu
+namespace AsyncAndParallel.Chapter1
 {
     public class StreamPrinter
     {
@@ -21,11 +17,6 @@ namespace AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchroniczn
         public static void RewindStream()
         {
             stream.Position = 0;
-        }
-        public static void PrintMessage(String comunicate,String taskID)
-        {
-            String id = taskID.Equals(String.Empty) ? "UI" : taskID;
-            PrintMessage(comunicate + " (" + id +")");
         }
 
         public static void PrintMessage(object owner, string comunicate)

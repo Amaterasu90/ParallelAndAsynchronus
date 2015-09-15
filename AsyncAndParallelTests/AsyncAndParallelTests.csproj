@@ -161,13 +161,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Chapter1\ExpectStringMaker.cs" />
+    <Compile Include="Chapter1\IEqualsTest.cs" />
     <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\FakeSynchronusAction.cs" />
     <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\FakeSynchronusActionProvider.cs" />
     <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\FakeSynchrousActionBuilder.cs" />
     <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\SynchronusActionProviderTest.cs" />
     <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\SynchronusActionTest.cs" />
     <Compile Include="Chapter1\Listing1. 1 Synchroniczne wykonywanie kodu zawartego w akcji\SynchrousActionBuilderTest.cs" />
+    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\AsynchronusActionTest.cs" />
+    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\FakeAsynchronusAction.cs" />
+    <Compile Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\FakeAsynchronusActionProvider.cs" />
     <Compile Include="Chapter1\TimeProviderTest.cs" />
+    <Compile Include="Chapter1\ExpectStringMakerTest.cs" />
     <Compile Include="Chapter1\WaitingManagerTest.cs" />
     <Compile Include="Chapter1\ActionProviderTest.cs" />
     <Compile Include="MainTest.cs" />
@@ -183,7 +189,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Chapter1\Listing1. 2 Użycie zadania do asynchronicznego wykonania kodu\" />
     <Folder Include="Chapter1\Listing1. 3 Wzór metody wykonującej jakąś czynność asynchronicznie\" />
   </ItemGroup>
   <Choose>

@@ -9,25 +9,44 @@ namespace AsyncAndParallel.Chapter1.Listing1._2_Użycie_zadania_do_asynchroniczn
 {
     public class AsynchronusAction
     {
-        public void Run()
+        private static readonly String ARGUMENT = "asynchronicznie";
+        private readonly AsynchronusActionProvider _provider;
+        private Task<long> _task;
+        public AsynchronusAction(AsynchronusActionProvider actionProvider)
         {
-            Func<object, long> action =
-                (object argument) =>
-                {
-                    StreamPrinter.PrintMessage(this,"Akcja: Początek, argument: " + argument.ToString());
-                    Thread.Sleep(1000);
-                    StreamPrinter.PrintMessage(this,"Akcja: Koniec");
-                    return DateTime.Now.Ticks;
-                };
+            _provider = actionProvider;
+            _task = new Task<long>(_provider.ActionDelegate,ARGUMENT);
+        }
 
-            Task<long> task = new Task<long>(action,"zadanie");
-            task.Start();
+        public Task<long> TaskInstance
+        {
+            get { return _task; }
+        }
+
+        protected void RunOperations()
+        {
             StreamPrinter.PrintMessage(this,"Akcja została uruchomiona");
-            if(task.Status != TaskStatus.Running && task.Status != TaskStatus.RanToCompletion)
+            if (TaskInstance.Status != TaskStatus.Running && TaskInstance.Status != TaskStatus.RanToCompletion)
                 StreamPrinter.PrintMessage(this,"Zadanie nie zostało uruchomione");
             else
-                StreamPrinter.PrintMessage(this,"Wynik: " + task.Result);
-            StreamPrinter.PrintMessage(this,"Run: Koniec");
+                StreamPrinter.PrintMessage(this, "Wynik: " + TaskInstance.Result);
+            StreamPrinter.PrintMessage(this,"RunOperations: Koniec");
+        }
+
+        public void Run()
+        {
+            RunTask();
+            RunOperations();
+        }
+
+        private void RunTask()
+        {
+            TaskInstance.Start();
+        }
+
+        public override String ToString()
+        {
+            return "AsynchronusAction";
         }
     }
 }

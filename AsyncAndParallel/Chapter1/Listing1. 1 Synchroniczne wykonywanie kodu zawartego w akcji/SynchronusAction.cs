@@ -17,9 +17,9 @@ namespace AsyncAndParallel.Chapter1.Listing1._1_Synchroniczne_wykonywanie_kodu_z
         {
             Func<object, long> action = _synchronusActionProvider.ActionDelegate;
 
-            StreamPrinter.PrintMessage("Run: Początek");
+            StreamPrinter.PrintMessage("RunOperations: Początek");
             StreamPrinter.PrintMessage("Wynik: "+action(Argument));
-            StreamPrinter.PrintMessage("Run: Koniec");
+            StreamPrinter.PrintMessage("RunOperations: Koniec");
         }
 
         public override bool Equals(Object o)
